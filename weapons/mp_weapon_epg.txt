@@ -1,3 +1,8 @@
+#base "_base_assault_rifle_optics.txt"
+#base "_base_mags_energy.txt"
+#base "_base_stocks_tactical.txt"
+#base "_base_shotgun_bolts.txt"
+
 WeaponData
 {
 	// General
@@ -271,23 +276,23 @@ WeaponData
 	"viewmodel_shake_right"							"0.0"
 
 
-	// Bob
+	// Bob - Hipfire
 	"bob_cycle_time"  								"0.4"
 	"bob_vert_dist"   								"0.19"
 	"bob_horz_dist"   								"0.1"
-	"bob_max_speed"   								"150"
+	"bob_max_speed"   								"173"
 	"bob_pitch"   									"0.75"
 	"bob_yaw" 										"-1.7"
 	"bob_roll"										"1.2"
 
-	// Bob zoomed
-	"bob_cycle_time_zoomed"								"0.4"
-	"bob_vert_dist_zoomed" 								"0.19"
-	"bob_horz_dist_zoomed" 								"0.1"
-	"bob_max_speed_zoomed" 								"150"
-	"bob_pitch_zoomed" 									"0.75"
-	"bob_yaw_zoomed" 									"-1.7"
-	"bob_roll_zoomed"									"1.2"
+	// Bob - ADS
+	"bob_cycle_time_zoomed"  						"0.7"
+	"bob_vert_dist_zoomed"   						"0.045"
+	"bob_horz_dist_zoomed"   						"0.07"
+	"bob_max_speed_zoomed"   						"155"
+//	"bob_pitch_zoomed"   							"0.0"
+	"bob_yaw_zoomed" 								"-0.01"
+	"bob_roll_zoomed"								"0.25"
 
 	// Rumble
 	"fire_rumble"									"rumble_grenadier"
@@ -338,49 +343,28 @@ WeaponData
 	"sway_turn_down_rotate_roll" 					"0.8"
 
 	// Zoomed Sway
-	"sway_rotate_attach_zoomed"  							"SWAY_ROTATE"
-	"sway_min_x_zoomed"  									"-0.5"
-	"sway_min_y_zoomed"  									"-0.5"
-	"sway_min_z_zoomed"  									"-0.6"
-	"sway_max_x_zoomed"  									"0.5"
-	"sway_max_y_zoomed"  									"0.5"
-	"sway_max_z_zoomed"  									"0.6"
-	"sway_min_pitch_zoomed"  								"-3"
-	"sway_min_yaw_zoomed"									"-2.5"
-	"sway_min_roll_zoomed"   								"-4"
-	"sway_max_pitch_zoomed"  								"3"
-	"sway_max_yaw_zoomed"									"2.5"
-	"sway_max_roll_zoomed"   								"4"
-	"sway_translate_gain_zoomed" 							"2.5"
-	"sway_rotate_gain_zoomed"								"7"
-	"sway_move_forward_translate_x_zoomed"   				"-0.1"
-	"sway_move_forward_translate_z_zoomed"   				"-0.5"
-	"sway_move_back_translate_x_zoomed"  					"0.2"
-	"sway_move_back_translate_z_zoomed"  					"-0.2"
-	"sway_move_left_translate_y_zoomed"  					"-1"
-	"sway_move_left_translate_z_zoomed"  					"-0.5"
-	"sway_move_left_rotate_roll_zoomed"  					"-4"
-	"sway_move_right_translate_y_zoomed" 					"1"
-	"sway_move_right_translate_z_zoomed" 					"-0.5"
-	"sway_move_right_rotate_roll_zoomed" 					"4"
-	"sway_move_up_translate_z_zoomed"						"-1"
-	"sway_move_down_translate_z_zoomed"  					"1"
-	"sway_turn_left_rotate_yaw_zoomed"   					"-2.5"
-	"sway_turn_right_rotate_yaw_zoomed"  					"2.5"
+	"sway_rotate_attach_zoomed"						"SWAY_ROTATE_ZOOMED"
+	"sway_rotate_attach_blend_time_zoomed"			"0.2"
+	"sway_rotate_gain_zoomed"						"5"
 
-	"sway_turn_left_translate_y_zoomed"  					".5"
-	"sway_turn_right_translate_y_zoomed"  					"-.5"
-	"sway_turn_up_translate_z_zoomed"  					".2"
-	"sway_turn_down_translate_z_zoomed"  					"-.2"
-	"sway_turn_up_translate_x_zoomed"  					".1"
-	"sway_turn_down_translate_x_zoomed"  					"-.1"
+	"sway_min_yaw_zoomed"							"-0.04"
+	"sway_max_yaw_zoomed"							"0.04"
+	"sway_turn_left_rotate_yaw_zoomed"				"-0.085"
+	"sway_turn_right_rotate_yaw_zoomed"				"0.085"
 
-	"sway_turn_left_rotate_roll_zoomed"   					"4"
-	"sway_turn_right_rotate_roll_zoomed"  					"-4"
-	"sway_turn_up_rotate_pitch_zoomed"   					"3"
-	"sway_turn_down_rotate_pitch_zoomed" 					"-3"
-	"sway_turn_up_rotate_roll_zoomed"   					"-0.8"
-	"sway_turn_down_rotate_roll_zoomed" 					"0.8"
+	"sway_min_roll_zoomed"   						"-1"
+	"sway_max_roll_zoomed"   						"1"
+	"sway_turn_left_rotate_roll_zoomed"   			"-1"
+	"sway_turn_right_rotate_roll_zoomed"  			"1"
+
+	"sway_move_right_rotate_roll_zoomed" 			"0.2"
+	"sway_move_left_rotate_roll_zoomed"  			"-0.2"
+
+	"sway_min_pitch_zoomed"  						"-0.02"
+	"sway_max_pitch_zoomed"  						"0.03"
+	"sway_turn_up_rotate_pitch_zoomed"				"0.07"
+	"sway_turn_down_rotate_pitch_zoomed"			"-0.07"
+
 
 	// WeaponED Unhandled Key/Values and custom script Key/Values
 	"deployfirst_time"								"1.25"
@@ -509,6 +493,11 @@ WeaponData
 			"damage_near_value"   							"35"
 			"damage_far_value"								"35"
 			"explosion_damage"								"35"
+		}
+
+		hopup_cool
+		{
+			"ammo_clip_size"						"*2"
 		}
 	}
 
