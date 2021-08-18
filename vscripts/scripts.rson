@@ -304,6 +304,8 @@ Scripts:
 
 	//CUSTOM
 	weapons/mp_weapon_dummyspawner.nut
+	weapons/mp_weapon_decoyspawner.nut
+	
 ]
 
 When: "SERVER || CLIENT"
