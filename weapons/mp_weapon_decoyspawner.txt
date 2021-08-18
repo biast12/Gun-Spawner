@@ -5,10 +5,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"Mirage's wingman"
-	"shortprintname"								"Mirage's WM"
-	"description" 									"Mirage's very own wingman. Might act weird, idk."
-	"longdesc" 										"Mirage's very own wingman. Might act weird, idk."
+	"printname"   									"Decoy Spawner"
+	"shortprintname"								"Decoy Spawner"
+	"description" 									"Allows you to spawn a decoy"
+	"longdesc" 										"Allows you to spawn a decoy"
 
 	"menu_icon"										"rui/weapon_icons/r5/weapon_wingman"
 	"hud_icon"										"rui/weapon_icons/r5/weapon_wingman"
