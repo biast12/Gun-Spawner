@@ -234,8 +234,6 @@ global enum eHealthPickupType
 
 	ULTIMATE
 
-	COMBO_FULL_SMALL
-
 	_count
 
 	INVALID = -1
@@ -515,18 +513,6 @@ void function SURVIVAL_Loot_InitShared()
 		file.healthPickups[ eHealthPickupType.HEALTH_SMALL ] <- healthPickup
 	}
 
-	{
-		HealthPickup healthPickup
-		{
-			healthPickup.lootData = SURVIVAL_Loot_GetLootDataByRef( "health_pickup_combo_full" )
-			healthPickup.interactionTime = 3.0
-			healthPickup.healAmount = 50.0
-			healthPickup.shieldAmount = 50.0
-			healthPickup.healTime = 0.0
-		}
-		file.healthPickups[ eHealthPickupType.COMBO_FULL_SMALL ] <- healthPickup
-	}
-
 	healthKitUseOrder.append(eHealthPickupType.SHIELD_LARGE)
 	healthKitUseOrder.append(eHealthPickupType.SHIELD_SMALL)
 	healthKitUseOrder.append(eHealthPickupType.COMBO_FULL)
@@ -618,6 +604,8 @@ void function SURVIVAL_Loot_InitShared()
 
 			int col = GetDataTableColumnByName( attachmentMatrix, data.baseWeapon )
 
+			// commented out because it caused errors for custom weapons.
+			// You might be able to move this to the if section below.
 			/*string colFeatureFlagRef = GetDataTableString( attachmentMatrix, featureFlagRowIdx, col )
 			if ( colFeatureFlagRef != "" && !GetFeatureFlagByString( colFeatureFlagRef ) )
 			{
@@ -634,21 +622,28 @@ void function SURVIVAL_Loot_InitShared()
 					aData.compatibleWeapons.append( data.baseWeapon )
 				}
 			}
+			// Make attachments compatible with custom weapons.
+			// Transferred to a function for cleaning up.
 			else if (IsAttachmentCompatibleWithCustomWeapon(data, aData)) aData.compatibleWeapons.append( data.baseWeapon )
 		}
 
 		file.attachmentMatrix[ attachmentName ] <- aData
 	}
 
+	// Makes custom hopups compatible with vanilla and custom weapons.
+	// Way to check for them is simple enough..
 	foreach(CustomHopupData a in GetCustomHopupArray()){
 		AttachmentData aData
+		// class name - also the name of the mod to be added.
 		aData.ref = a.className
+		// attachment slot
 		aData.attachPoint = a.attachmentSlot
 
 		foreach ( data in allWeapons )
 		{
 			if (IsAttachmentCompatibleWithCustomWeapon(data, aData)) aData.compatibleWeapons.append( data.baseWeapon )
 		}
+		// add to da matrix.
 		file.attachmentMatrix[aData.ref] <- aData
 	}
 
@@ -711,11 +706,31 @@ void function SURVIVAL_Loot_InitShared()
 
 bool function IsAttachmentCompatibleWithCustomWeapon(LootData weapon, AttachmentData att)
 {
-	if (!weapon.supportedAttachments.contains( att.attachPoint )) return false
-
+	// Check attachment compatiblity with custom weapon. Or vice-versa.
+	//
+	// Because checking for every single circumstance is way more performance heavy and ugly as hell,
+	// instead we check if the mod with the same name of the attachment class name exists on the weapon.
+	//
+	// Sure, it means we can make multiple mag attachments compatible with the same weapon,
+	// but that isn't necessarily bad.
 	array<string> mods = GetWeaponMods_Global( weapon.baseWeapon )
-	if (mods.contains(att.ref)) printt("Attachment", att.ref, "has been found to be compatible with", weapon.ref)
-	else return false
+	if (!mods.contains(att.ref)) return false
+	printt(att.ref, "|", att.attachPoint, "|", weapon.ref)
+	if (!weapon.supportedAttachments.contains( att.attachPoint )) {
+		// Allows adding  attachment slots to normal weapons if attachments are compatible.
+		// Means that certain weapons will have barrels added to them if a custom barrel is compatible.
+		// still won't allow them to equip vanilla attachments, however.
+		// Default OFF.
+		if (GetCurrentPlaylistVarBool("custom_hopup_override_weapon_attachments", false) && att.attachPoint != "")
+		{
+			weapon.supportedAttachments.append( att.attachPoint )
+			//if (weapon.attachmentStyle == "") weapon.attachmentStyle = "hopup"
+			if (SURVIVAL_Loot_GetLootDataByRef(att.ref).attachmentStyle == "") SURVIVAL_Loot_GetLootDataByRef(att.ref).attachmentStyle = "hopup"
+		}
+		else return false
+	}
+	// debug.
+	printt("Attachment", att.ref, "has been found to be compatible with", weapon.ref)
 	return true
 }
 
@@ -1006,12 +1021,10 @@ bool function SURVIVAL_Loot_RunConditionalCheck( string ref, entity player )
 
 string function GetAttachPointForAttachment( string attachmentName )
 {
-	var attachmentMatrix = GetDataTable( $"datatable/weapon_attachment_matrix.rpak" )
-	int attachmentRow = GetDataTableRowMatchingStringValue( attachmentMatrix, GetDataTableColumnByName( attachmentMatrix, "attachmentName" ), attachmentName )
-	Assert( attachmentRow >= 0, "Attachment not defined in datatable/weapon_attachment_matrix.rpak" )
-	int attachmentPointColumn = GetDataTableColumnByName( attachmentMatrix, "attachmentPoint" )
-
-	return GetDataTableString( attachmentMatrix, attachmentRow, attachmentPointColumn )
+	// Support for custom attachments.
+	// Leaves normal attachments unchanged too so it still works as intended,
+	// and is also faster.
+	return file.attachmentMatrix[attachmentName].attachPoint
 }
 
 #if CLIENT || SERVER
@@ -2866,6 +2879,10 @@ void function Inventory_RegisterNetworking()
 {
 	Remote_RegisterClientFunction( "ServerCallback_PickedupItem", "entity", "int", 0, 256, "int", 0, 256 )
 	Remote_RegisterClientFunction( "ServerCallback_DroppedItem", "entity", "int", 0, 256 )
+	// Yes. This was changed.
+	// It's because if we don't, the game will flop itself when you pick certain items up.
+	// If there's a better solution, you're welcome to suggest it.
+	// They shouldn't have added ranges into this.
 	Remote_RegisterClientFunction( "ServerCallback_AttachedMod", "int", 0, 256, "int", 0, 256 )
 }
 #endif // CLIENT || SERVER

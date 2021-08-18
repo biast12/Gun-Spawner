@@ -284,7 +284,9 @@ void function SURVIVAL_Loot_All_InitShared()
 
 		string supportedAttachmentsString  = GetLootTableString( data.ref, dt, i, "supportedAttachments" )
 		array<string> supportedAttachments = split( supportedAttachmentsString, " " )
-		if (data.ref == "mp_weapon_esaw" || data.ref == "mp_weapon_energy_ar") supportedAttachments.append("mag")
+		// This version is supposed to have energy mags on these weapons.
+		// They were only removed on January 14, 2020, and this build is from October 30, 2019.
+		if (data.ref == "mp_weapon_esaw" || data.ref == "mp_weapon_energy_ar" || data.ref == "mp_weapon_doubletake") supportedAttachments.append("mag")
 		supportedAttachments.sort(
 			int function( string attachmentA, string attachmentB ) : ()
 			{
@@ -451,163 +453,110 @@ struct CustomWeaponData
 
 void function RegisterCustomWeapons()
 {
-	{
-		CustomWeaponData data
-		data.className = "mp_weapon_epg"
-		data.tier = 5
-		data.baseMods = []
-		data.supportedAttachments = ["mag", "grip", "sight", "hopup"]
-		data.pickupSound1p = "survival_loot_pickup_weapon_dmr"
-		data.pickupSound3p = "survival_loot_pickup_3p_weapon_dmr"
-		data.weaponType = "assault"
-		data.lowWeaponChance = 5.0
-		data.medWeaponChance = 5.0
-		data.highWeaponChance = 5.0
-		// weaponTypes: assault, smg, lmg, sniper, shotgun, pistol
-		RegisterWeapon(data)
-	}
+	array<string> customWeaponClassNames = split(GetCurrentPlaylistVarString("custom_weapon_list", "default"), " ")
+	foreach (string className in customWeaponClassNames)
 	{
 		CustomWeaponData data
 		// Class name - the file name of the weapon, excluding extension
-		data.className = "mp_weapon_infinity_rifle"
+		data.className = className
 		// Tier - the displayed rarity of the weapon
-		data.tier = 5
+		data.tier = GetCurrentPlaylistVarInt(className + "_tier", 1)
 		// equip these mods on pickup.
-		data.baseMods = []
+		data.baseMods = split(GetCurrentPlaylistVarString(className + "_base_mods", ""), " ")
 		// what attachments does the weapon support
-		data.supportedAttachments = ["mag", "grip", "sight", "hopup", "barrel"]
+		data.supportedAttachments = split(GetCurrentPlaylistVarString(className + "_attachments", "barrel mag sight grip"), " ")
 		// pickup sounds
-		data.pickupSound1p = "survival_loot_pickup_weapon_rspn101"
-		data.pickupSound3p = "survival_loot_pickup_3p_weapon_rspn101"
+		data.pickupSound1p = GetCurrentPlaylistVarString(className + "_pickup_sound_1p", "survival_loot_pickup_weapon_rspn101")
+		data.pickupSound3p = GetCurrentPlaylistVarString(className + "_pickup_sound_3p", "survival_loot_pickup_3p_weapon_rspn101")
 		// weapon type - used for attachments.
 		// weaponTypes: assault, smg, lmg, sniper, shotgun, pistol
-		data.weaponType = "assault"
+		data.weaponType = GetCurrentPlaylistVarString(className + "_class", "assault")
 		// weights for weapon to appear on ground.
 		// the game sets the chances to a sum of 100.
 		// the actual chance is dependent on all other custom weapons.
-		data.lowWeaponChance = 5.0
-		data.medWeaponChance = 5.0
-		data.highWeaponChance = 5.0
+		data.lowWeaponChance = GetCurrentPlaylistVarFloat(className + "_low_chance", 5.0)
+		data.medWeaponChance = GetCurrentPlaylistVarFloat(className + "_med_chance", 10.0)
+		data.highWeaponChance = GetCurrentPlaylistVarFloat(className + "_high_chance", 25.0)
 		RegisterWeapon(data)
 	}
-	{
+
+	array<string> customHopupClassNames = split(GetCurrentPlaylistVarString("custom_hopup_list", ""), " ")
+	foreach(string className in customHopupClassNames){
 		CustomHopupData data
 		// class name - the name of the mod to be added to a weapon once this hopup is equipped.
-		data.className = "hopup_cool"
+		data.className = className
 		// display name - the name displayed on pop-ups of this hop-up.
-		data.displayName = "Cool Hopup"
+		data.displayName = GetCurrentPlaylistVarString(className + "_name", "Custom Hopup")
 		// description.
-		data.desc = "It's cool :)"
+		data.desc = GetCurrentPlaylistVarString(className + "_desc", "Hop up desc")
 		// Tier - the displayed rarity of the hop-up
-		data.tier = 2
+		data.tier = GetCurrentPlaylistVarInt(className + "_tier", 1)
 		// icon - the icon of the hop-up. defaults to the Choke Hop-up Icon.
-		data.icon = $"rui/pilot_loadout/mods/hopup_em_choke"
+		#if !UI
+		data.icon = CastStringToAsset(GetCurrentPlaylistVarString(className + "_icon", "rui/pilot_loadout/mods/hopup_em_choke"))
 		// model - the appearance of the hop-up on the ground.
-		data.model = $"mdl/weapons_r5/loot/_master/w_loot_wep_mods_chip.rmdl"
+		data.model = CastStringToAsset(GetCurrentPlaylistVarString(className + "_model", "mdl/weapons_r5/loot/_master/w_loot_wep_mods_chip.rmdl"))
+		#endif
 		// The weight of the hop-up in Basic Tier Loot areas
-		data.lowWeight = 5.0
+		data.lowWeight = GetCurrentPlaylistVarFloat(className + "_low_chance", 5.0)
 		// The weight of the hop-up in Mid Tier Loot areas
-		data.medWeight = 15.0
+		data.medWeight = GetCurrentPlaylistVarFloat(className + "_med_chance", 10.0)
 		// The weight of the hop-up in High Tier Loot areas
-		data.highWeight = 25.0
+		data.highWeight = GetCurrentPlaylistVarFloat(className + "_high_chance", 25.0)
+		// slot
+		data.attachmentSlot = GetCurrentPlaylistVarString(className + "_slot", "hopup")
 		// create the hopup...
 		CreateCustomHopup(data)
 	}
-	{
-		CustomHopupData data
-		data.className = "hopup_barrel"
-		data.displayName = "Infinity Barrel"
-		data.desc = "1 part of many."
-		data.tier = 5
-		data.lowWeight = 5.0
-		data.medWeight = 15.0
-		data.highWeight = 25.0
-		data.attachmentSlot = "barrel"
-		data.icon = $"rui/pilot_loadout/mods/barrel_stabilizer"
-		data.model = $"mdl/weapons_r5/loot/_master/w_loot_wep_mods_suppr_v2b.rmdl"
-		CreateCustomHopup(data)
-	}
-	{
-		CustomHopupData data
-		data.className = "hopup_stock"
-		data.displayName = "Infinity Stock"
-		data.desc = "1 part of many."
-		data.tier = 5
-		data.lowWeight = 5.0
-		data.medWeight = 15.0
-		data.highWeight = 25.0
-		data.attachmentSlot = "grip"
-		data.icon = $"rui/pilot_loadout/mods/tactical_stock"
-		data.model = $"mdl/weapons_r5/loot/w_loot_wep_iso_stock_folded_regular.rmdl"
-		CreateCustomHopup(data)
-	}
-	{
-		CustomHopupData data
-		data.className = "hopup_mag"
-		data.displayName = "Infinity Mag"
-		data.desc = "1 part of many."
-		data.attachmentSlot = "mag"
-		data.tier = 5
-		data.lowWeight = 5.0
-		data.medWeight = 15.0
-		data.highWeight = 25.0
-		data.icon = $"rui/pilot_loadout/mods/light_mag"
-		data.model = $"mdl/weapons_r5/loot/_master/w_loot_wep_mods_mag_v1b.rmdl"
-		CreateCustomHopup(data)
-	}
-	{
-		CustomHopupData data
-		data.className = "hopup_sight"
-		data.displayName = "Infinity Sight"
-		data.desc = "1 part of many."
-		data.attachmentSlot = "sight"
-		data.tier = 5
-		data.lowWeight = 5.0
-		data.medWeight = 15.0
-		data.highWeight = 25.0
-		data.icon = $"rui/weapon_icons/attachments/hcog"
-		data.model = $"mdl/weapons_r5/loot/_master/w_loot_wep_mods_optic_cq_hcog_r1.rmdl"
-		CreateCustomHopup(data)
-	}
-	{
-		CustomHopupData data
-		data.className = "hopup_infinity"
-		data.displayName = "Infinity Hopup"
-		data.desc = "1 part of many."
-		data.attachmentSlot = "hopup"
-		data.tier = 5
-		data.lowWeight = 5.0
-		data.medWeight = 15.0
-		data.highWeight = 25.0
-		data.icon = $"rui/pilot_loadout/mods/hopup_em_choke"
-		CreateCustomHopup(data)
-	}
 }
+#if !UI
+// used for conversion shit
+asset function CastStringToAsset( string val )
+{
+	return GetKeyValueAsAsset( { kn = val }, "kn" )
+}
+#endif
 
 void function RegisterWeapon( CustomWeaponData weaponData )
 {
 	LootData data
 	
 	data.ref = weaponData.className
+	// have no idea why we do this, but it's needed.
 	data.baseWeapon = weaponData.className
-	//RegisterWeaponForUse( data.baseWeapon )\
+
+	// We don't use this as custom weapons don't have an eDamageSourceId.
+	// This means that kills with the weapon will show up as
+	// Attacker [Killed] Victim.
+	// This would be nice if changed, but it's good as is for now,
+	// as the game is not fully functioning yet.
+	//RegisterWeaponForUse( data.baseWeapon )
+
+	// precache the weapon, obviously.
 	#if !UI
 	PrecacheWeapon(weaponData.className)
 	#endif
+	// rarity
 	data.tier = weaponData.tier
+	// Copy pasted from SURVIVAL_Loot_All_InitShared
 	data.pickupString = GetWeaponInfoFileKeyField_GlobalString( data.baseWeapon, "printName" )
 	data.desc = GetWeaponInfoFileKeyField_GlobalString( data.baseWeapon, "description" )
 	data.hudIcon = GetWeaponInfoFileKeyFieldAsset_Global( data.baseWeapon, "hud_icon" )
 	data.model = GetWeaponInfoFileKeyFieldAsset_Global( data.baseWeapon, "playermodel" )
+
+	// Pickup sounds. 
 	data.pickupSound_3p = weaponData.pickupSound3p
 	data.pickupSound_1p = weaponData.pickupSound1p
-	data.attachmentStyle = "hopup"
+	// Ammo type - also will FINALLY show up on HUD when you equip the weapon :D
 	if ( GetWeaponInfoFileKeyField_Global( data.baseWeapon, "ammo_pool_type" ) != null )
 		data.ammoType = GetWeaponInfoFileKeyField_GlobalString( data.baseWeapon, "ammo_pool_type" )
 
+	// loot tags is just weapon type in disguise.
 	data.lootTags = [ weaponData.weaponType ]
 	data.lootType = eLootType.MAINWEAPON
 	
+	// sort the attachments so it appears like vanilla and not messed up
+	// if it's typed incorrectly in playlists
 	weaponData.supportedAttachments.sort(
 		int function( string attachmentA, string attachmentB ) : ()
 		{
@@ -622,8 +571,10 @@ void function RegisterWeapon( CustomWeaponData weaponData )
 	)
 	
 	data.supportedAttachments = weaponData.supportedAttachments
+	// base mods, come with the weapon.
 	data.baseMods = weaponData.baseMods
-
+	
+	// index goes above 100 with custom items, this is why we extended the remote function.
 	data.index = file.lootIndexToString.len()
 	file.lootIndexToString.append( data.ref )
 	file.lootData[ data.ref ] <- data
@@ -635,13 +586,15 @@ void function RegisterWeapon( CustomWeaponData weaponData )
 	#if !UI
 	if ( data.model != $"" )
 		PrecacheModel( data.model )
-	AddCustomItemToLootPool(data.ref, "weapon_low", weaponData.lowWeaponChance)
-	AddCustomItemToLootPool(data.ref, "weapon_medium", weaponData.medWeaponChance)
-	AddCustomItemToLootPool(data.ref, "weapon_high", weaponData.highWeaponChance)
+		// Add the item to the loot pool
+		AddCustomItemToLootPool(data.ref, "weapon_low", weaponData.lowWeaponChance)
+		AddCustomItemToLootPool(data.ref, "weapon_medium", weaponData.medWeaponChance)
+		AddCustomItemToLootPool(data.ref, "weapon_high", weaponData.highWeaponChance)
 	#endif
-	#if CLIENT
-	RunUIScript( "SetupDevCommand", "Spawn " + data.pickupString, "script SpawnGenericLoot( \"" + data.ref + "\", gp()[0].GetOrigin(), <-1,-1,-1>, 1 )" )
-	#endif
+	// Not needed to appear in the dev menu.
+	//#if CLIENT
+	//RunUIScript( "SetupDevCommand", "Spawn " + data.pickupString, "script SpawnGenericLoot( \"" + data.ref + "\", gp()[0].GetOrigin(), <-1,-1,-1>, 1 )" )
+	//#endif
 }
 
 void function CreateCustomHopup(CustomHopupData hopupData)
@@ -653,18 +606,28 @@ void function CreateCustomHopup(CustomHopupData hopupData)
 	data.desc = hopupData.desc
 	data.hudIcon = hopupData.icon
 	data.model = hopupData.model
+	data.tier = hopupData.tier
+
+	// can be hardcoded since this is an attachment, no need for custom pickup sounds.
 	data.pickupSound_1p = "survival_loot_pickup_attachments"
 	data.pickupSound_3p = "survival_loot_pickup_3p_attachments"
-	data.tier = hopupData.tier
+
+	// needs to be setup, otherwise you won't be able to pick up the attachment
 	data.countPerDrop = 1
 	data.inventorySlotCount = 1
 	data.attachmentStyle = "hopup"
-	data.index = file.lootIndexToString.len()
+
 	data.lootTags = []
 	data.lootType = eLootType.ATTACHMENT
+
+
+	// index goes above 100 with custom items, this is why we extended the remote function.
+	data.index = file.lootIndexToString.len()
 	file.lootIndexToString.append( data.ref )
 	file.lootData[ data.ref ] <- data
+
 	#if !UI
+		// add custom item to loot pool.
 		AddCustomItemToLootPool(data.ref, "attachment_low", hopupData.lowWeight)
 		AddCustomItemToLootPool(data.ref, "attachment_medium", hopupData.medWeight)
 		AddCustomItemToLootPool(data.ref, "attachment_high", hopupData.highWeight)
