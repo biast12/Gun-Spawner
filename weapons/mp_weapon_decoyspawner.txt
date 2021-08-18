@@ -10,6 +10,14 @@ WeaponData
 	"description"                              "Allows you to spawn a decoy"
 	"longdesc"                                 "Allows you to spawn a decoy"
 	"ammo_pool_type"								"highcal"
+	
+	//SPAWN DECOYS
+	//
+
+	"OnWeaponPrimaryAttack"							"OnWeaponPrimaryAttack_weapon_decoyspawner"
+	"OnWeaponNpcPrimaryAttack"						"OnWeaponNpcPrimaryAttack_weapon_decoyspawner"
+	"OnProjectileCollision"                         "OnProjectileCollision_weapon_decoyspawner"
+
 
 	"menu_icon"										"rui/weapon_icons/r5/weapon_wingman"
 	"hud_icon"										"rui/weapon_icons/r5/weapon_wingman"
@@ -62,15 +70,15 @@ WeaponData
 
 	"damage_type" 									"bullet"
 
-	"ammo_clip_size"                                "160"
+	"ammo_clip_size"                                "130"
 
 	"dof_zoom_focusArea_horizontal"					"0.06"
 	"dof_zoom_focusArea_top"						"0.070"
 	"dof_zoom_focusArea_bottom"						"-0.011"
 
-    "ammo_default_total"                            "160"
-	"ammo_stockpile_max"                            "160"
-	"ammo_default_total"                            "160"
+    "ammo_default_total"                            "130"
+	"ammo_stockpile_max"                            "500"
+	"ammo_default_total"                            "500"
 	"ammo_per_shot"                                 "1"
 	"ammo_min_to_fire"                              "1"
 	"ammo_clip_random_loss_on_npc_drop_chunksize"   "1"
@@ -230,13 +238,6 @@ WeaponData
     "clip_bodygroup_show_for_milestone_2"	"1"
     "clip_bodygroup_show_for_milestone_3"	"1"
 
-	//
-	//SPAWN DECOYS
-	//
-
-	"OnWeaponPrimaryAttack"							"OnWeaponPrimaryAttack_weapon_decoyspawner"
-	"OnWeaponNpcPrimaryAttack"						"OnWeaponNpcPrimaryAttack_weapon_decoyspawner"
-	"OnProjectileCollision"                         "OnProjectileCollision_weapon_decoyspawner"
 
 	Mods
 	{
@@ -247,8 +248,9 @@ WeaponData
 		survival_finite_ammo
         {
             "ammo_default_total"			"0"
-	   		"ammo_stockpile_max"			"20"
-	   		"ammo_no_remove_from_stockpile"	"0"
+	   		"ammo_stockpile_max"			"500"
+			"uses_ammo_pool"				"1"
+			"ammo_no_remove_from_stockpile"	"0"
 	   		"low_ammo_fraction" 			"0.3"
 	   		"uses_ammo_pool"				"1"
         }
@@ -264,17 +266,17 @@ WeaponData
 
 		highcal_mag_l1
 		{
-			"ammo_clip_size"   					"500"
+			"ammo_clip_size"   					"150"
 		}
 
 		highcal_mag_l2
 		{
-			"ammo_clip_size"   					"500"
+			"ammo_clip_size"   					"180"
 		}
 
 		highcal_mag_l3
 		{
-			"ammo_clip_size"   					"500"
+			"ammo_clip_size"   					"200"
 		}
 
 		legendary1

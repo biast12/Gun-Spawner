@@ -6,7 +6,7 @@ WeaponData
 {
 	// General
 	"printname"   									"Infinity R301"
-	"shortprintname"								"IR301"
+	"shortprintname"								"Infinity R301"
 	"description" 									"Once a gauntlet. Now it's stupid."
 	"longdesc"										"Once a gauntlet. Now it's stupid. dudeit'stheinfinitygauntlet"
 

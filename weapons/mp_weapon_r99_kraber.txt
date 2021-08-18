@@ -5,10 +5,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"#WPN_R97"
-	"shortprintname"								"#WPN_R97_SHORT"
-	"description" 									"#WPN_R97_DESC"
-	"longdesc"										"#WPN_R97_LONGDESC"
+	"printname"   									"R99 As Kraber"
+	"shortprintname"								"R99 As Kraber"
+	"description" 									"R99 As Kraber"
+	"longdesc"										"R99 As Kraber"
 
 	"weapon_type_flags"								"WPT_PRIMARY"
 	"ammo_pool_type"								"bullet"

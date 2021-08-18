@@ -3,10 +3,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"SMART PISTOL"
-	"shortprintname"								"SMART PISTOL"
-	"description" 									"SMART PISTOL"
-	"longdesc"										"SMART PISTOL"
+	"printname"   									"Smart Pistol LMG"
+	"shortprintname"								"Smart Pistol LMG"
+	"description" 									"Smart Pistol LMG"
+	"longdesc"										"Smart Pistol LMG"
 
 	"fast_swap_to"									"1"
 

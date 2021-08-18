@@ -4,8 +4,8 @@
 WeaponData
 {
 	// General
-	"printname"   									"Mozambique Evolved"
-	"shortprintname"								"Mozam Evo"
+	"printname"   									"Mozambique Extreme"
+	"shortprintname"								"Mozambique Extreme"
 	"description" 									"Mozambique here"
 	"longdesc"										"What the Whiskey Tango Foxtrot did you just flipping say about me, you little Beta? I’ll have you know I graduated top of my class in the IMC Army Corps, and I’ve been involved in numerous secret raids on the Militia, and I have over 300 confirmed squads dusted. I am trained in heavy artillery warfare and I’m the top sniper in the entire Frontier.. You are nothing to me but just another Tango. I will wipe you the foxtrot out with precision the likes of which has never been seen before in these games, mark my foxtrotting words. You think you can get away with saying that laconic phrase (that means using very few words, ladies, the opposite of effective) to me over the Internet? Think again, Tango. As we speak I am contacting my secret network of spies across the Badlands and your banner is being traced right now so you better prepare for the Creeping Thunder, Rainbow. The thunder that wipes out the short little thing you call your Mozambique. You’re foxtrotting KIA, FNG. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my iron sights. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the IMC and I will use it to its full extent to wipe your rookie shin-shiners off the face of the Canyon, you little newbie. If only you could have known what unholy retribution your little “talks too much” comment was about to bring down upon you, maybe you would have held your foxtrotting tongue. But you couldn’t, you didn’t, and now you’re paying the price, you [Mirage]damn Rainbow. I will rain gunpowder all over you and you will drown in it. You’re fucking (PG-13, I get to use one) third-partied, Gibraltar."
 

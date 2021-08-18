@@ -4,10 +4,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"#WPN_WINGMAN"
-	"shortprintname"								"#WPN_WINGMAN_SHORT"
-	"description" 									"#WPN_WINGMAN_DESC"
-	"longdesc" 										"#WPN_WINGMAN_LONGDESC"
+	"printname"   									"Oneshot Wingman"
+	"shortprintname"								"Oneshot Wingman"
+	"description" 									"A Wingman That Kills You With One-shot"
+	"longdesc" 										"A Wingman That Kills You With One-shot"
 
 	"ammo_pool_type"								"highcal"
 

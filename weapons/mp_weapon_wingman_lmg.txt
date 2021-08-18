@@ -7,8 +7,8 @@
 WeaponData
 {
 	// General
-	"printname"   									"#WPN_LMG"
-	"shortprintname"								"#WPN_LMG_SHORT"
+	"printname"   									"Wingman LMG"
+	"shortprintname"								"Wingman LMG"
 	"description" 									"#WPN_LMG_DESC"
 	"longdesc"										"#WPN_LMG_LONGDESC"
 
@@ -90,13 +90,13 @@ WeaponData
 	"chroma_color"									".6 1 .6"
 
 	//Sounds
-	"fire_sound_1_player_1p"						"LMG_shell"
-	"fire_sound_1_player_3p"						"LMG_shell"
-	"fire_sound_2_player_1p"						"Weapon_LMG_SecondShot_1P"
-	"fire_sound_2_player_3p"						""
-	"fire_sound_2_npc"								"Weapon_LMG_SecondShot_npc"
-	"sound_zoom_in"									"Weapon_LMG_ADS_In"
-	"sound_zoom_out"								"Weapon_LMG_ADS_Out"
+	"fire_sound_1"									"Weapon_bulletCasings.Bounce"
+	"fire_sound_2_player_1p"						"Weapon_Wingman_Fire_1P"
+	"fire_sound_2_player_3p"						"Weapon_Wingman_Fire_3P"
+	"fire_sound_2_npc"								"Weapon_Wingman_Fire_NPC"
+	
+	"sound_zoom_in"									"Weapon_Wingman_ADS_In"
+	"sound_zoom_out"								"Weapon_Wingman_ADS_Out"
 
 	"looping_sounds"								"1"
 
@@ -112,7 +112,9 @@ WeaponData
 	"burst_or_looping_fire_sound_middle_npc"		"Weapon_LMG_Loop_3P_NPC_A"
 	"burst_or_looping_fire_sound_end_npc"			""
 
-	"low_ammo_sound_name_1"							"lmg_LowAmmo_Shot1"
+	"low_ammo_sound_name_1"							"Wingman_LowAmmo_Shot1"
+	"low_ammo_sound_name_2"							"Wingman_LowAmmo_Shot2"
+	"low_ammo_sound_name_3"							"Wingman_LowAmmo_Shot3"
 
 	"sound_dryfire"									"hemlok_dryfire"
 	"sound_pickup"									"wpn_pickup_MG_1P"

@@ -4,8 +4,8 @@
 WeaponData
 {
 	// General
-	"printname"   									"#WPN_MASTIFF"
-	"shortprintname"								"#WPN_MASTIFF_SHORT"
+	"printname"   									"Mastiff Extreme"
+	"shortprintname"								"Mastiff Extreme"
 	"description" 									"#WPN_MASTIFF_DESC"
 	"longdesc"										"#WPN_MASTIFF_LONGDESC"
 
