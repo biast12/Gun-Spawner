@@ -1,5 +1,5 @@
-#base "_base_shotgun.txt"
-#base "_base_character_mods.txt"
+#base "_base_handgun.txt"
+#base "_base_mags_heavy.txt"
 
 WeaponData
 {
@@ -9,15 +9,19 @@ WeaponData
 	"description"                              "Allows you to spawn dummy..."
 	"longdesc"                                 "Allows you to spawn dummy..."
 
-	"menu_icon"										"rui/weapon_icons/r5/weapon_r45"
-	"hud_icon"										"rui/weapon_icons/r5/weapon_r45"
-
-	"fire_mode"   									"automatic"
-	"is_semi_auto"									"1"
-	
+	//SPAWN DUMMIES
 	"OnWeaponPrimaryAttack"							"OnWeaponPrimaryAttack_weapon_dummyspawner"
 	"OnWeaponNpcPrimaryAttack"						"OnWeaponNpcPrimaryAttack_weapon_dummyspawner"
 
+	"ammo_pool_type"								"highcal"
+
+	"menu_icon"										"rui/weapon_icons/r5/weapon_wingman"
+	"hud_icon"										"rui/weapon_icons/r5/weapon_wingman"
+
+	"fire_mode"   									"automatic"
+	"is_semi_auto"									"1"
+
+	"weapon_type_flags"								"WPT_PRIMARY"
 	"damage_flags"									"DF_BULLET | DF_KNOCK_BACK | DF_DISMEMBERMENT"
 
 	// Menu
@@ -29,8 +33,8 @@ WeaponData
 	"stat_rof"										"27"
 
 	// Models
-	"viewmodel"   									"mdl/weapons/p2011_auto/ptpov_p2011_auto.rmdl"
-	"playermodel" 									"mdl/weapons/p2011_auto/w_p2011_auto.rmdl"
+	"viewmodel"   									"mdl/weapons/b3wing/ptpov_b3wing.rmdl"
+	"playermodel" 									"mdl/weapons/b3wing/w_b3wing.rmdl"
 
     // FX - Muzzle Flash
 	"fx_muzzle_flash_view"							"wpn_muzzleflash_wingman_FP"
@@ -42,13 +46,13 @@ WeaponData
 	"fx_shell_eject_view"							""
 	"fx_shell_eject_world"							""
 
-	"chroma_color"									"1 1 1"
+	"chroma_color"									".3 1 .7"
 
 	// Sounds
 	"fire_sound_1"									"Weapon_bulletCasings.Bounce"
-	"fire_sound_2_player_1p"						"Weapon_Kraber_Fire_1P"
-	"fire_sound_2_player_3p"						"Weapon_Kraber_Fire_3P"
-	"fire_sound_2_npc"								"Weapon_Kraber_Fire_NPC"
+	"fire_sound_2_player_1p"						"Weapon_Wingman_Fire_1P"
+	"fire_sound_2_player_3p"						"Weapon_Wingman_Fire_3P"
+	"fire_sound_2_npc"								"Weapon_Wingman_Fire_NPC"
 	"sound_zoom_in"									"Weapon_Wingman_ADS_In"
 	"sound_zoom_out"								"Weapon_Wingman_ADS_Out"
 
@@ -58,7 +62,7 @@ WeaponData
 
 	"damage_type" 									"bullet"
 
-	"ammo_clip_size"   								"600"
+	"ammo_clip_size"   								"50"
 
 	"dof_zoom_focusArea_horizontal"					"0.06"
 	"dof_zoom_focusArea_top"						"0.070"
@@ -78,13 +82,18 @@ WeaponData
     "damage_very_far_value_titanarmor" 				"45"
     "damage_rodeo" 									"350"
 
-    "damage_headshot_scale"                         "2.0"
+    // this sucks. it should be an %else but I haven't had time to do it yet
+                    
+                                                           
+      
+
+                     
+    "damage_headshot_scale"                         "2.1"   //"2.15"
+      
 
     "damage_near_distance"							"800"
     "damage_far_distance" 							"1300"
     "damage_very_far_distance"						"1800"
-
-    "damage_heavyarmor_nontitan_scale"				"0.35"
 
 	// NPC
 	// Damage - When Used by NPCs
@@ -117,13 +126,13 @@ WeaponData
 	"dof_nearDepthEnd"								"0.0"
 
 	// Behavior
-	"fire_rate"   									"10"
-	"reload_time" 									"2.1"
-	"reload_time_late1" 							"1.75"
-	"reload_time_late2" 							"0.60"
-	"reloadempty_time"								"2.1"
-	"reloadempty_time_late1"						"1.75"
-	"reloadempty_time_late2"						"0.65"
+	"fire_rate"   									"100"
+	"reload_time" 									"0.05"
+	"reload_time_late1" 							"0.05"
+	"reload_time_late2" 							"0.05"
+	"reloadempty_time"								"0.05"
+	"reloadempty_time_late1"						"0.05"
+	"reloadempty_time_late2"						"0.05"
 	"deploy_time" 									"0.45"
 	"holster_time"									"0.4"
 	"raise_time"  									"0.35"
@@ -236,12 +245,48 @@ WeaponData
 
             "low_ammo_fraction" 			"0.3"
 
-	   		"uses_ammo_pool"				"0"
+	   		"uses_ammo_pool"				"1"
         }
-		
-        optic_ranged_hcog
+
+        hopup_headshot_dmg
+        {
+        	"damage_headshot_scale"			"2.25"
+        	"projectile_trail_effect_0"     "P_tracer_proj_sniper_piercer"
+        	"fire_sound_1_player_1p"		"weapon_wingman_fire_skull_1p"
+			"fire_sound_1_player_3p"		"weapon_wingman_fire_skull_3p"
+			"fire_sound_1_npc"				"weapon_wingman_fire_skull_3p"
+        }
+
+        highcal_mag_l1
 		{
-		    "bodygroup1_set"		    "1"
+			"ammo_clip_size"   							"6"
+		}
+		highcal_mag_l2
+		{
+			"ammo_clip_size"   							"8"
+		}
+		highcal_mag_l3
+		{
+			"ammo_clip_size"   							"10"
+		}
+
+		legendary1
+		{
+			"viewmodel"   									"mdl/weapons/b3wing/ptpov_b3wing_legendary_01.rmdl"
+			"playermodel" 									"mdl/weapons/b3wing/w_b3wing_legendary_01.rmdl"
+
+			// Temporarily disabled so we can equip the optics without error spam
+			//"dof_zoom_nearDepthStart"						"4.750"
+			//"dof_zoom_nearDepthEnd"							"11.000"
+		}
+		legendary5
+		{
+			"viewmodel"   									"mdl/weapons/b3wing/ptpov_b3wing_legendary_05.rmdl"
+			"playermodel" 									"mdl/Weapons/b3wing/w_b3wing_legendary_05.rmdl"
+
+			// Temporarily disabled so we can equip the optics without error spam
+			//"dof_zoom_nearDepthStart"						"4.750"
+			//"dof_zoom_nearDepthEnd"							"11.000"
 		}
 	}
 
