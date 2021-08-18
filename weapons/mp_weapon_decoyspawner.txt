@@ -11,6 +11,7 @@ WeaponData
 	"longdesc"                                 "Allows you to spawn a decoy"
 	"ammo_pool_type"								"highcal"
 	
+	//
 	//SPAWN DECOYS
 	//
 
