@@ -6,8 +6,8 @@ WeaponData
 	// General
 	"printname"                                "Dummy Spawner"
 	"shortprintname"                           "Dummy Spawner"
-	"description"                              "Allows you to spawn dummy..."
-	"longdesc"                                 "Allows you to spawn dummy..."
+	"description"                              "Allows you to spawn a dummy..."
+	"longdesc"                                 "Allows you to spawn a dummy..."
 
 	//SPAWN DUMMIES
 	"OnWeaponPrimaryAttack"							"OnWeaponPrimaryAttack_weapon_dummyspawner"
@@ -83,13 +83,8 @@ WeaponData
     "damage_rodeo" 									"350"
 
     // this sucks. it should be an %else but I haven't had time to do it yet
-                    
-                                                           
-      
 
-                     
     "damage_headshot_scale"                         "2.1"   //"2.15"
-      
 
     "damage_near_distance"							"800"
     "damage_far_distance" 							"1300"
