@@ -156,10 +156,10 @@ global struct SvGlobals
 
 	bool roundBasedTeamScore_RoundReset         = true  // if true, reset team scores at the start of each round.
 	bool isInPilotGracePeriod                   = false // if true, all players will be allowed to switch loadouts.
-	
+
 	table<string, void functionref(entity,array<string>)> globalAnimEventTokenizeCallbacks
 	array<bool functionref( entity player, entity zipline, vector ziplineClosestPoint )> canUseZiplineCallbacks
-	
+
 	// r5 stuff
 	array<void functionref(entity, entity)> onPilotEmbarkingTitanCallbacks
 	array<void functionref(entity, entity)> onPlayerUsedOffhandCallbacks
@@ -176,7 +176,7 @@ void function CodeCallback_MapSpawn() // original script entry point
 	//seterrorhandler(void function() {})
 	ScriptCompilerTest()
 	LoadDiamond()
-	
+
 	RegisterSignal( "CleanupFXAndSoundsForDecoy" )
 	RegisterSignal( "MirageSpotted" )
 	RegisterSignal( "forever" )
@@ -212,7 +212,7 @@ void function CodeCallback_MapSpawn() // original script entry point
 
 
 	PrecacheModel( $"mdl/Humans/class/medium/combat_dummie_medium.rmdl" )
-	
+
 	PrecacheModel( $"mdl/humans/class/medium/combat_dummie_medium.rmdl" )
 
 	//Charms - todo: find a better way
@@ -232,11 +232,12 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheModel( $"mdl/props/charm/charm_nessy_ghost.rmdl" )
 	PrecacheModel( $"mdl/props/charm/charm_clown.rmdl" )
 	PrecacheModel( $"mdl/props/charm/charm_witch.rmdl" )
-	
-	PrecacheModel( $"mdl/robots/drone_frag/drone_frag.rmdl" )
-	PrecacheModel( $"mdl/vehicle/droppod_fireteam/droppod_fireteam.rmdl" )
-	PrecacheModel( $"mdl/vehicle/droppod_loot/droppod_loot_LL_holo.rmdl" )
-	PrecacheModel( $"mdl/robots/marvin/marvin_gladcard.rmdl" )
+
+	// PrecacheModel( $"mdl/vehicle/hovership/hovership_platform_mp.rmdl" )
+	// PrecacheModel( $"mdl/fx/sonar_pulse_cone.rmdl" )
+	// PrecacheModel( $"mdl/weapons/titan_raptor_rocket_pod/atpov_titan_raptor_rocket_pod_right.rmdl" )
+	// PrecacheModel( $"mdl/currency/crafting/currency_crafting_legendary.rmdl" )
+	// PrecacheModel( $"mdl/vehicle/droppod_loot/droppod_loot_LL_holo.rmdl" )
 	PrecacheModel( $"mdl/menu/xp_badge.rmdl" )
 	PrecacheModel( $"mdl/menu/coin.rmdl" )
 	PrecacheModel( $"mdl/currency/crafting/currency_crafting_epic.rmdl" )
