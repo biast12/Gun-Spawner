@@ -307,17 +307,19 @@ void function CodeCallback_MapSpawn() // original script entry point
 
 
 	//Custom
-	PrecacheWeapon( $"mp_ability_3dash" )
-	PrecacheWeapon( $"mp_ability_spider_grapple" )
 	PrecacheWeapon( $"mp_weapon_epg" )
+	PrecacheWeapon( $"mp_weapon_hailstorm_lmg" )
 	PrecacheWeapon( $"mp_weapon_oneshot_wingman" )
+	PrecacheWeapon( $"mp_weapon_bpistol" )
 	PrecacheWeapon( $"mp_weapon_mastiff_extreme" )
 	PrecacheWeapon( $"mp_weapon_mozambique_extreme" )
 	PrecacheWeapon( $"mp_weapon_wingman_lmg" )
 	PrecacheWeapon( $"mp_weapon_smart_lmg" )
 	PrecacheWeapon( $"mp_weapon_r99_kraber" )
-	PrecacheWeapon( $"mp_weapon_bpistol" )
+	PrecacheWeapon( $"mp_weapon_laser_g8" )
 	PrecacheWeapon( $"mp_weapon_infinity_rifle" )
+	PrecacheWeapon( $"mp_ability_3dash" )
+	PrecacheWeapon( $"mp_ability_spider_grapple" )
 	PrecacheWeapon( $"mp_weapon_grenade_sonar" )
 	PrecacheWeapon( $"mp_weapon_grenade_electric_smoke" )
 	PrecacheWeapon( $"mp_weapon_deployable_cover" )
