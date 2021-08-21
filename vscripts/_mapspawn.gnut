@@ -304,6 +304,7 @@ void function CodeCallback_MapSpawn() // original script entry point
 	// PrecacheWeapon( $"mp_ability_laser_trip" )
 	// PrecacheWeapon( $"mp_weapon_satchel" )
 	// PrecacheWeapon( $"mp_weapon_spectre_spawner" )
+	PrecacheWeapon( $"melee_data_knife" )
 
 
 	//Custom
@@ -324,7 +325,7 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheWeapon( $"mp_weapon_grenade_electric_smoke" )
 	PrecacheWeapon( $"mp_weapon_deployable_cover" )
 
-	//Gun Spwaners
+	//Gun Spawners
 	PrecacheWeapon( $"mp_weapon_mdlspawner" )
 	PrecacheWeapon( $"mp_weapon_dummyspawner" )
 	PrecacheWeapon( $"mp_weapon_decoyspawner" )

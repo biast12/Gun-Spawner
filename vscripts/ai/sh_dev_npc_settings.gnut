@@ -7,7 +7,7 @@ global function SetupSurvivalIncapShieldBot
 global function SetupAbilities
 global function SetupWeapons
 global function SetupCustomThings
-global function SetupGunSpwaners
+global function SetupGunSpawners
 
 void function SetupChangeSurvivalCharacterClass()
 {
@@ -192,10 +192,10 @@ void function SetupCustomThings()
 	#endif
 }
 
-void function SetupGunSpwaners()
+void function SetupGunSpawners()
 {
 	#if UI
-	//Gun Spwaners
+	//Gun Spawners
 	SetupDevCommand( "Dummy Spawner", "give mp_weapon_dummyspawner" )
 	SetupDevCommand( "Decoy Spawner", "give mp_weapon_decoyspawner" )
 	#endif
