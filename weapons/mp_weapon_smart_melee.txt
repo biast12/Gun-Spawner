@@ -6,10 +6,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"MELEE"
-	"shortprintname"								"MELEE"
-	"description" 									"MELEE"
-	"longdesc"										"MELEE"
+	"printname"   									"Smart Melee"
+	"shortprintname"								"Smart Melee"
+	"description" 									"Smart Melee"
+	"longdesc"										"Smart Melee"
 
 	"fast_swap_to"									"1"
 	

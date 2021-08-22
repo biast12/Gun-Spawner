@@ -3,10 +3,10 @@
 WeaponData
 {
 	// General
-	"printname"                                "SMART KRABER"
-	"shortprintname"                           "SMART KRABER"
-	"description"                              "SMART KRABER"
-	"longdesc"                                 "SMART KRABER"
+	"printname"                                "Smart Kraber"
+	"shortprintname"                           "Smart Kraber"
+	"description"                              "Smart Kraber"
+	"longdesc"                                 "Smart Kraber"
 	
 	"fast_swap_to"									"1"
 	

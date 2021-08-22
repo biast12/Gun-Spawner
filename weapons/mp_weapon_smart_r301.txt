@@ -5,10 +5,10 @@
 WeaponData
 {
 	// General
-	"printname"   									"SMART 301"
-	"shortprintname"								"SMART 301"
-	"description" 									"SMART 301"
-	"longdesc"										"SMART 301"
+	"printname"   									"Smart R301"
+	"shortprintname"								"Smart R301"
+	"description" 									"Smart R301"
+	"longdesc"										"Smart R301"
 
 	"fast_swap_to"									"1"
 
