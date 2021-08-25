@@ -270,6 +270,7 @@ void function SetupDefaultDevCommandsMP()
 {
 	SetupDevMenu( "Abilities", SetDevMenu_Abilities )
 	SetupDevMenu( "Equip Weapon", SetDevMenu_Weapons )
+	SetupDevMenu( "Equip Give Weapon", SetDevMenu_GiveWeapons )
 	SetupDevMenu( "Custom Community Things", SetDevMenu_CustomThings )
 	SetupDevMenu( "Gun Spawners", SetDevMenu_GunSpawners )
 	SetupDevMenu( "MDLSpawner", SetDevMenu_ModelSpawner )
@@ -399,6 +400,11 @@ void function SetDevMenu_Abilities( var _ )
 void function SetDevMenu_Weapons( var _ )
 {
 	thread ChangeToThisMenu( SetupWeapons )
+}
+
+void function SetDevMenu_GiveWeapons( var _ )
+{
+	thread ChangeToThisMenu( SetupGiveWeapons )
 }
 
 void function SetDevMenu_SurvivalCharacter( var _ )

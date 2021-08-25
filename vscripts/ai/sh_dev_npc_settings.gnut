@@ -6,6 +6,7 @@ global function SetupSurvivalLoot
 global function SetupSurvivalIncapShieldBot
 global function SetupAbilities
 global function SetupWeapons
+global function SetupGiveWeapons
 global function SetupCustomThings
 global function SetupGunSpawners
 
@@ -80,6 +81,37 @@ void function SetupWeapons()
 	SetupDevCommand( "Thermite Grenade", "give mp_weapon_thermite_grenade" )
 	SetupDevCommand( "Frag Grenade", "give mp_weapon_frag_grenade" )
 	SetupDevCommand( "Arc Star", "give mp_weapon_grenade_emp" )
+	#endif
+}
+
+void function SetupGiveWeapons()
+{
+	#if UI
+	SetupDevCommand( "tgive Alternator SMG", "tgive mp_weapon_alternator_smg" )
+	SetupDevCommand( "tgive RE45", "tgive mp_weapon_autopistol" )
+	SetupDevCommand( "tgive Charge Rifle", "tgive mp_weapon_defender" )
+	SetupDevCommand( "tgive Longbow DMR", "tgive mp_weapon_dmr" )
+	SetupDevCommand( "tgive Triple Take", "tgive mp_weapon_doubletake" )
+	SetupDevCommand( "tgive Havoc", "tgive mp_weapon_energy_ar" )
+	SetupDevCommand( "tgive Peacekeeper", "tgive mp_weapon_energy_shotgun" )
+	SetupDevCommand( "tgive Devotion", "tgive mp_weapon_esaw" )
+	SetupDevCommand( "tgive G7 Rifle", "tgive mp_weapon_g2" )
+	SetupDevCommand( "tgive Hemlok", "tgive mp_weapon_hemlok" )
+	SetupDevCommand( "tgive M600 Spitfire", "tgive mp_weapon_lmg" )
+	SetupDevCommand( "tgive L-Star", "tgive mp_weapon_lstar" )
+	SetupDevCommand( "tgive Mastiff Shotgun", "tgive mp_weapon_mastiff" )
+	SetupDevCommand( "tgive Prowler SMG", "tgive mp_weapon_pdw" )
+	SetupDevCommand( "tgive R99", "tgive mp_weapon_r97" )
+	SetupDevCommand( "tgive R301", "tgive mp_weapon_rspn101" )
+	SetupDevCommand( "tgive P2020 Pistol", "tgive mp_weapon_semipistol" )
+	SetupDevCommand( "tgive EVA-8 Auto", "tgive mp_weapon_shotgun" )
+	SetupDevCommand( "tgive Mozambique", "tgive mp_weapon_shotgun_pistol" )
+	SetupDevCommand( "tgive Kraber", "tgive mp_weapon_sniper" )
+	SetupDevCommand( "tgive Flatline", "tgive mp_weapon_vinson" )
+	SetupDevCommand( "tgive Wingman", "tgive mp_weapon_wingman" )
+	
+	SetupDevCommand( "tgive Full R99", "tgive mp_weapon_r97 barrel_stabilizer_l4_flash_hider optic_cq_threat bullets_mag_l3 stock_tactical_l3" )
+	SetupDevCommand( "give Full R99", "give mp_weapon_r97 barrel_stabilizer_l4_flash_hider optic_cq_threat bullets_mag_l3 stock_tactical_l3" )
 	#endif
 }
 
