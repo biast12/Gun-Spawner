@@ -313,7 +313,10 @@ void function SetupDefaultDevCommandsMP()
 	//SetupDevMenu( "Spawn NPC [Team 4]", SetDevMenu_AISpawn, TEAM_NPC )
 
 
+	SetupDevCommand( "Toggle Thirdperson", "ToggleThirdPerson" )
 	SetupDevCommand( "Toggle NoClip", "noclip" )
+	SetupDevCommand( "Toggle Akimbo With Current Weapon", "script DEV_ToggleAkimboWeapon(gp()[0])" )
+	SetupDevCommand( "Toggle Akimbo With Holstered Weapon", "script DEV_ToggleAkimboWeaponAlt(gp()[0])" )
 	SetupDevCommand( "Toggle Model Viewer", "script thread ToggleModelViewer()" )
 	SetupDevCommand( "Start Skydive", "script thread SkydiveTest()" )
 	SetupDevCommand( "Spawn Deathbox", "script thread SURVIVAL_CreateDeathBox(gp()[0], false)" )
@@ -365,7 +368,6 @@ void function SetupDefaultDevCommandsMP()
 	SetupDevCommand( "Disable God Mode", "script DisableDemigod( gp()[0] )" )
 	SetupDevCommand( "Toggle Screen Alignment Tool", "script_client DEV_ToggleScreenAlignmentTool()" )
 
-	SetupDevMenu( "Prototypes", SetDevMenu_Prototypes )
 
 	foreach ( DevCommand cmd in file.levelSpecificCommands )
 		SetupDevCommand( cmd.label, cmd.command )
@@ -759,19 +761,6 @@ void function SetupHighVisNPCTest()
 	SetupDevCommand( "Use R5 Art Settings", "script PROTO_HighVisNPCs_SetTestEnv( \"r5\" )" )
 	SetupDevCommand( "Use R2 Art Settings", "script PROTO_HighVisNPCs_SetTestEnv( \"r2\" )" )
 }
-
-void function SetDevMenu_Prototypes( var _ )
-{
-	thread ChangeToThisMenu( SetupPrototypesDevMenu )
-}
-
-void function SetupPrototypesDevMenu()
-{
-	SetupDevCommand( "Toggle Akimbo With Current Weapon", "script DEV_ToggleAkimboWeapon(gp()[0])" )
-	SetupDevCommand( "Toggle Akimbo With Holstered Weapon", "script DEV_ToggleAkimboWeaponAlt(gp()[0])" )
-	// SetupDevCommand( "Change to Shadow Squad", "script Dev_ShadowFormEnable( GP() )" )
-}
-
 
 void function RunCodeDevCommandByAlias( string alias )
 {
