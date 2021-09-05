@@ -267,7 +267,6 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheWeapon( $"mp_weapon_autopistol" )
 	PrecacheWeapon( $"mp_weapon_wingman" )
 	PrecacheWeapon( $"mp_weapon_thermite_grenade" )
-	PrecacheWeapon( $"mp_weapon_wraith_kunai_primary" )
 	PrecacheWeapon( $"mp_weapon_deployable_medic" )
 	// PrecacheWeapon( $"mp_weapon_car" )
 	PrecacheWeapon( $"mp_ability_grapple" )
@@ -335,6 +334,11 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheWeapon( $"mp_weapon_mdlspawner" )
 	PrecacheWeapon( $"mp_weapon_dummyspawner" )
 	PrecacheWeapon( $"mp_weapon_decoyspawner" )
+	
+	//Heirlooms
+	PrecacheWeapon( $"mp_weapon_wraith_kunai_primary" )
+	PrecacheWeapon( $"mp_weapon_bloodhound_axe_primary" )
+	PrecacheWeapon( $"mp_weapon_lifeline_baton_primary" )
 
 	printl( "Code Script: _mapspawn" )
 
