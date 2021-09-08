@@ -335,11 +335,6 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheWeapon( $"mp_weapon_dummyspawner" )
 	PrecacheWeapon( $"mp_weapon_decoyspawner" )
 	
-	//Heirlooms
-	PrecacheWeapon( $"mp_weapon_wraith_kunai_primary" )
-	PrecacheWeapon( $"mp_weapon_bloodhound_axe_primary" )
-	PrecacheWeapon( $"mp_weapon_lifeline_baton_primary" )
-
 	printl( "Code Script: _mapspawn" )
 
 	SV_CL_Shared_Init()
