@@ -248,7 +248,7 @@ void function CodeCallback_MapSpawn() // original script entry point
 	PrecacheModel( $"mdl/currency/crafting/currency_crafting_rare.rmdl" )
 
 	PrecacheWeapon( $"mp_weapon_melee_survival" )
-	// PrecacheWeapon( $"mp_weapon_data_knife" )
+	PrecacheWeapon( $"mp_weapon_data_knife" )
 	// PrecacheWeapon( $"mp_weapon_jack_dknife" )
 	PrecacheWeapon( $"mp_weapon_alternator_smg" )
 	PrecacheWeapon( $"mp_weapon_bubble_bunker" )
