@@ -6,8 +6,6 @@ global function SetupSurvivalLoot
 global function SetupSurvivalIncapShieldBot
 global function SetupAbilities
 global function SetupWeapons
-global function SetupGiveWeapons
-global function SetupCustomThings
 global function SetupGunSpawners
 
 void function SetupChangeSurvivalCharacterClass()
@@ -84,37 +82,6 @@ void function SetupWeapons()
 	#endif
 }
 
-void function SetupGiveWeapons()
-{
-	#if UI
-	SetupDevCommand( "tgive Alternator SMG", "tgive mp_weapon_alternator_smg" )
-	SetupDevCommand( "tgive RE45", "tgive mp_weapon_autopistol" )
-	SetupDevCommand( "tgive Charge Rifle", "tgive mp_weapon_defender" )
-	SetupDevCommand( "tgive Longbow DMR", "tgive mp_weapon_dmr" )
-	SetupDevCommand( "tgive Triple Take", "tgive mp_weapon_doubletake" )
-	SetupDevCommand( "tgive Havoc", "tgive mp_weapon_energy_ar" )
-	SetupDevCommand( "tgive Peacekeeper", "tgive mp_weapon_energy_shotgun" )
-	SetupDevCommand( "tgive Devotion", "tgive mp_weapon_esaw" )
-	SetupDevCommand( "tgive G7 Rifle", "tgive mp_weapon_g2" )
-	SetupDevCommand( "tgive Hemlok", "tgive mp_weapon_hemlok" )
-	SetupDevCommand( "tgive M600 Spitfire", "tgive mp_weapon_lmg" )
-	SetupDevCommand( "tgive L-Star", "tgive mp_weapon_lstar" )
-	SetupDevCommand( "tgive Mastiff Shotgun", "tgive mp_weapon_mastiff" )
-	SetupDevCommand( "tgive Prowler SMG", "tgive mp_weapon_pdw" )
-	SetupDevCommand( "tgive R99", "tgive mp_weapon_r97" )
-	SetupDevCommand( "tgive R301", "tgive mp_weapon_rspn101" )
-	SetupDevCommand( "tgive P2020 Pistol", "tgive mp_weapon_semipistol" )
-	SetupDevCommand( "tgive EVA-8 Auto", "tgive mp_weapon_shotgun" )
-	SetupDevCommand( "tgive Mozambique", "tgive mp_weapon_shotgun_pistol" )
-	SetupDevCommand( "tgive Kraber", "tgive mp_weapon_sniper" )
-	SetupDevCommand( "tgive Flatline", "tgive mp_weapon_vinson" )
-	SetupDevCommand( "tgive Wingman", "tgive mp_weapon_wingman" )
-	
-	SetupDevCommand( "tgive Full R99", "tgive mp_weapon_r97 barrel_stabilizer_l4_flash_hider optic_cq_threat bullets_mag_l3 stock_tactical_l3" )
-	SetupDevCommand( "give Full R99", "give mp_weapon_r97 barrel_stabilizer_l4_flash_hider optic_cq_threat bullets_mag_l3 stock_tactical_l3" )
-	#endif
-}
-
 void function SetupSurvival()
 {
 	#if UI
@@ -167,6 +134,10 @@ void function SetupAbilities()
 	SetupDevCommand( "Bangalore Ultimate", "give mp_weapon_grenade_creeping_bombardment" )
 	SetupDevCommand( "Caustic Tactical", "give mp_weapon_dirty_bomb" )
 	SetupDevCommand( "Caustic Ultimate", "give mp_weapon_grenade_gas" )
+	SetupDevCommand( "3Dash Tactical", "give mp_ability_3dash" )
+	SetupDevCommand( "Pulse Blade", "give mp_weapon_grenade_sonar" )
+	SetupDevCommand( "Amped Wall", "give mp_weapon_deployable_cover" )
+	SetupDevCommand( "Electric Smoke", "give mp_weapon_grenade_electric_smoke" )
 	#endif
 }
 
@@ -181,10 +152,6 @@ void function SetupModelSpawner()
 	SetupDevCommand( "drone_frag", "mdl/robots/drone_frag/drone_frag.rmdl" )
 	SetupDevCommand( "droppod_fireteam", "SetMDLSpawnerModel mdl/vehicle/droppod_fireteam/droppod_fireteam.rmdl" )
 	SetupDevCommand( "droppod_loot_LL_holo", "mdl/vehicle/droppod_loot/droppod_loot_LL_holo.rmdl" )
-	SetupDevCommand( "currency_crafting_common", "SetMDLSpawnerModel mdl/currency/crafting/currency_crafting_common.rmdl" )
-	SetupDevCommand( "currency_crafting_rare", "SetMDLSpawnerModel mdl/currency/crafting/currency_crafting_rare.rmdl" )
-	SetupDevCommand( "currency_crafting_epic", "SetMDLSpawnerModel mdl/currency/crafting/currency_crafting_epic.rmdl" )
-	SetupDevCommand( "currency_crafting_legendary", "SetMDLSpawnerModel mdl/currency/crafting/currency_crafting_legendary.rmdl" )
 	#endif
 }
 
@@ -196,41 +163,6 @@ void function SetupSurvivalIncapShieldBot()
 	SetupDevCommand( "Spawn Bot with Lv 3 Incap Shield", "script Dev_SpawnBotWithIncapShieldToView( 3 )" )
 	SetupDevCommand( "Spawn Bot with Lv 4 Incap Shield", "script Dev_SpawnBotWithIncapShieldToView( 4 )" )
 	SetupDevCommand( "Spawn Bot with a Random Incap Shield", "script Dev_SpawnBotWithIncapShieldToView( -1 )" )
-	#endif
-}
-
-void function SetupCustomThings()
-{
-	#if UI
-	//Custom
-	SetupDevCommand( "Akimbo Weapon", "script GiveMatchingAkimboWeapon(gp()[0].GetActiveWeapon( eActiveInventorySlot.mainHand ), [])" )
-	SetupDevCommand( "EPG", "give mp_weapon_epg" )
-	SetupDevCommand( "Hailstorm LMG", "give mp_weapon_hailstorm_lmg" )
-	SetupDevCommand( "Oneshot Wingman", "give mp_weapon_oneshot_wingman" )
-	SetupDevCommand( "Burst Pistol", "give mp_weapon_bpistol" )
-	SetupDevCommand( "Mastiff Extreme", "give mp_weapon_mastiff_extreme" )
-	SetupDevCommand( "Mozambique Extreme", "give mp_weapon_mozambique_extreme" )
-	SetupDevCommand( "Wingman LMG", "give mp_weapon_wingman_lmg" )
-	SetupDevCommand( "Laser G8", "give mp_weapon_laser_g8 optic_cq_hcog_bruiser" )
-	SetupDevCommand( "L-Star Grenade Launcher", "give mp_weapon_lstargrenade" )
-	SetupDevCommand( "Ionizer", "give mp_weapon_ionizer" )
-	SetupDevCommand( "Infinity R301", "give mp_weapon_infinity_rifle" )
-	SetupDevCommand( "Full Infinity R301", "give mp_weapon_infinity_rifle hopup_barrel hopup_stock hopup_mag optic_cq_hcog_bruiser hopup_infinity" )
-	SetupDevCommand( "Smart Melee", "give mp_weapon_smart_melee" )
-	SetupDevCommand( "Smart Pistol LMG", "give mp_weapon_smart_lmg optic_cq_threat" )
-	SetupDevCommand( "Smart R301", "give mp_weapon_smart_r301 optic_cq_hcog_bruiser" )
-	SetupDevCommand( "Smart Kraber", "give mp_weapon_smart_kraber" )
-	SetupDevCommand( "Normal Hand Model", "give mp_weapon_shadow_squad_hands_primary" )
-	SetupDevCommand( "Data Knife Model", "give mp_weapon_shadow_squad_hands_primary" )
-	SetupDevCommand( "Shadow Squad Hands Model", "give mp_weapon_shadow_squad_hands_primary" )
-	SetupDevCommand( "Normal Hand Animation", "give melee_pilot_emptyhanded" )
-	SetupDevCommand( "Data Knife Animation", "give melee_data_knife" )
-	SetupDevCommand( "Shadow Squad Hands Animation", "give melee_shadowsquad_hands" )
-	SetupDevCommand( "3Dash Tactical", "give mp_ability_3dash" )
-	SetupDevCommand( "Spider Grapple", "give mp_ability_spider_grapple" )
-	SetupDevCommand( "Pulse Blade", "give mp_weapon_grenade_sonar" )
-	SetupDevCommand( "Amped Wall", "give mp_weapon_deployable_cover" )
-	SetupDevCommand( "Electric Smoke", "give mp_weapon_grenade_electric_smoke" )
 	#endif
 }
 

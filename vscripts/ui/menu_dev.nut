@@ -270,8 +270,7 @@ void function SetupDefaultDevCommandsMP()
 {
 	SetupDevMenu( "Abilities", SetDevMenu_Abilities )
 	SetupDevMenu( "Equip Weapon", SetDevMenu_Weapons )
-	SetupDevMenu( "Equip Give Weapon", SetDevMenu_GiveWeapons )
-	SetupDevMenu( "Custom Community Things", SetDevMenu_CustomThings )
+        SetupDevMenu( "TDM Weapon", SetDevMenu_TDMWeapons )
 	SetupDevMenu( "Gun Spawners", SetDevMenu_GunSpawners )
 	SetupDevMenu( "MDLSpawner", SetDevMenu_ModelSpawner )
 
@@ -313,10 +312,7 @@ void function SetupDefaultDevCommandsMP()
 	//SetupDevMenu( "Spawn NPC [Team 4]", SetDevMenu_AISpawn, TEAM_NPC )
 
 
-	SetupDevCommand( "Toggle Thirdperson", "ToggleThirdPerson" )
 	SetupDevCommand( "Toggle NoClip", "noclip" )
-	SetupDevCommand( "Toggle Akimbo With Current Weapon", "script DEV_ToggleAkimboWeapon(gp()[0])" )
-	SetupDevCommand( "Toggle Akimbo With Holstered Weapon", "script DEV_ToggleAkimboWeaponAlt(gp()[0])" )
 	SetupDevCommand( "Toggle Model Viewer", "script thread ToggleModelViewer()" )
 	SetupDevCommand( "Start Skydive", "script thread SkydiveTest()" )
 	SetupDevCommand( "Spawn Deathbox", "script thread SURVIVAL_CreateDeathBox(gp()[0], false)" )
@@ -368,6 +364,7 @@ void function SetupDefaultDevCommandsMP()
 	SetupDevCommand( "Disable God Mode", "script DisableDemigod( gp()[0] )" )
 	SetupDevCommand( "Toggle Screen Alignment Tool", "script_client DEV_ToggleScreenAlignmentTool()" )
 
+	SetupDevMenu( "Prototypes", SetDevMenu_Prototypes )
 
 	foreach ( DevCommand cmd in file.levelSpecificCommands )
 		SetupDevCommand( cmd.label, cmd.command )
@@ -394,6 +391,11 @@ void function SetupLevelDevCommands()
 	}
 }
 
+void function SetDevMenu_ModelSpawner( var _ )
+{
+	thread ChangeToThisMenu( SetupModelSpawner )
+}
+
 void function SetDevMenu_Abilities( var _ )
 {
 	thread ChangeToThisMenu( SetupAbilities )
@@ -403,30 +405,18 @@ void function SetDevMenu_Weapons( var _ )
 {
 	thread ChangeToThisMenu( SetupWeapons )
 }
-
-void function SetDevMenu_GiveWeapons( var _ )
+void function SetDevMenu_TDMWeapons( var _ )
 {
-	thread ChangeToThisMenu( SetupGiveWeapons )
+	thread ChangeToThisMenu( SetupTDMweapsons )
 }
-
 void function SetDevMenu_SurvivalCharacter( var _ )
 {
 	thread ChangeToThisMenu( SetupChangeSurvivalCharacterClass )
 }
 
-void function SetDevMenu_CustomThings( var _ )
-{
-	thread ChangeToThisMenu( SetupCustomThings )
-}
-
 void function SetDevMenu_GunSpawners( var _ )
 {
 	thread ChangeToThisMenu( SetupGunSpawners )
-}
-
-void function SetDevMenu_ModelSpawner( var _ )
-{
-	thread ChangeToThisMenu( SetupModelSpawner )
 }
 
 void function DEV_InitLoadoutDevSubMenu()
@@ -711,7 +701,38 @@ void function SetupRespawnPlayersDevMenu()
 	//	SetupDevCommand( "Respawn player: " + player.GetPlayerName(), "respawn " + player.GetEntIndex() )
 	//}
 }
+void function SetupTDMweapsons()
+{
+	SetupDevCommand( "2x R99", "tgive p mp_weapon_r97 optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider bullets_mag_l3" )
+	SetupDevCommand( "3x G7 ", "tgive p mp_weapon_g2 optic_ranged_hcog stock_sniper_l3 barrel_stabilizer_l4_flash_hider bullets_mag_l3 hopup_double_tap" )
+	SetupDevCommand( "2x re45", "tgive p mp_weapon_autopistol optic_cq_hcog_bruiser barrel_stabilizer_l4_flash_hider bullets_mag_l3" )
+	SetupDevCommand( "2x r301", "tgive p mp_weapon_rspn101 optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider bullets_mag_l3" )
+	SetupDevCommand( "1x p2020", "tgive p mp_weapon_semipistol optic_cq_hcog_classic bullets_mag_l3 hopup_unshielded_dmg" )
+	SetupDevCommand( "2x Alternator", "tgive p mp_weapon_alternator_smg optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider bullets_mag_l3" )
+	SetupDevCommand( "2x hemlok", "tgive p mp_weapon_hemlok optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider highcal_mag_l3" )
+	SetupDevCommand( "2x flatline", "tgive p mp_weapon_vinson optic_cq_hcog_bruiser stock_tactical_l3 highcal_mag_l3")
+	SetupDevCommand( "2x Spitfire", "tgive p mp_weapon_lmg optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider highcal_mag_l3" )
+        SetupDevCommand( "1x Prowler", "tgive p mp_weapon_pdw optic_cq_hcog_classic stock_tactical_l3 highcal_mag_l3" )
+        SetupDevCommand( "1x wingman", "tgive p mp_weapon_wingman optic_cq_hcog_classic highcal_mag_l3" )
+        SetupDevCommand( "4-8x longbow", "tgive p mp_weapon_dmr optic_sniper_variable barrel_stabilizer_l4_flash_hider stock_sniper_l3 highcal_mag_l3" )
+        SetupDevCommand( "4-10x Charge Rifle", "tgive p mp_weapon_defender optic_sniper_threat stock_sniper_l3" )
+        SetupDevCommand( "2x Devotion", "tgive p mp_weapon_esaw optic_cq_hcog_bruiser stock_tactical_l3 barrel_stabilizer_l4_flash_hider energy_mag_l3 hopup_turbocharger" )
+        SetupDevCommand( "2x Havoc", "tgive p mp_weapon_energy_ar optic_cq_hcog_bruiser stock_tactical_l3 energy_mag_l3 hopup_turbocharger" )
+        SetupDevCommand( "1x EVA8", "tgive s mp_weapon_shotgun shotgun_bolt_l3 optic_cq_hcog_classic hopup_double_tap" )
+        SetupDevCommand( "1x Mozambique", "tgive s mp_weapon_shotgun_pistol shotgun_bolt_l3 optic_cq_hcog_classic hopup_unshielded_dmg" )
+        SetupDevCommand( "1x Peacekeeper", "tgive s mp_weapon_energy_shotgun shotgun_bolt_l3 optic_cq_hcog_classic hopup_energy_choke" )
+        SetupDevCommand( "3x Triple Take", "tgive p mp_weapon_doubletake energy_mag_l3 optic_ranged_hcog stock_sniper_l3 hopup_energy_choke" )
+        SetupDevCommand( "Kraber", "tgive p mp_weapon_sniper" )
+        SetupDevCommand( "Lstar", "tgive p mp_weapon_lstar" )
+        SetupDevCommand( "Mastiff","tgive s mp_weapon_mastiff")
 
+
+
+	//foreach ( player in GetPlayerArray() )
+	//{
+	//	SetupDevCommand( "Respawn player: " + player.GetPlayerName(), "respawn " + player.GetEntIndex() )
+	//}
+}
 
 void function SetDevMenu_RespawnOverride( var _ )
 {
@@ -761,6 +782,19 @@ void function SetupHighVisNPCTest()
 	SetupDevCommand( "Use R5 Art Settings", "script PROTO_HighVisNPCs_SetTestEnv( \"r5\" )" )
 	SetupDevCommand( "Use R2 Art Settings", "script PROTO_HighVisNPCs_SetTestEnv( \"r2\" )" )
 }
+
+void function SetDevMenu_Prototypes( var _ )
+{
+	thread ChangeToThisMenu( SetupPrototypesDevMenu )
+}
+
+void function SetupPrototypesDevMenu()
+{
+	SetupDevCommand( "Toggle Akimbo With Current Weapon", "script DEV_ToggleAkimboWeapon(gp()[0])" )
+	SetupDevCommand( "Toggle Akimbo With Holstered Weapon", "script DEV_ToggleAkimboWeaponAlt(gp()[0])" )
+	// SetupDevCommand( "Change to Shadow Squad", "script Dev_ShadowFormEnable( GP() )" )
+}
+
 
 void function RunCodeDevCommandByAlias( string alias )
 {

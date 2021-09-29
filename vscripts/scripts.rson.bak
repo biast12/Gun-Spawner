@@ -228,7 +228,7 @@ Scripts:
 	sh_timer.gnut
 	sh_doors.nut
 	sh_capturemode.gnut
-	
+
 	sh_weaponrack.nut
 
 	sh_clientsidepickups.gnut
